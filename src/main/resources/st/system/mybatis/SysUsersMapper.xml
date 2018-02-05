@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.system.mapper.SysUsersMapper">
+	<resultMap id="BaseResultMap" type="st.system.model.UsersModel">
+		<result column="id"	property="id"/>	
+		<result column="username" property="username"/>
+		<result column="youbian" property="youbian"/>
+		<result column="name" property="name"/>
+		<result column="lianxi" property="lianxi"/>
+		<result column="shenfen" property="shenfen"/>
+		<result column="address" property="address"/>	
+	</resultMap>
+	<sql id="Base_Column_List">
+		 id, username, youbian, name, lianxi, shenfen, address
+	</sql>
+
+	<select id = "selectAddress" resultMap="BaseResultMap" parameterType="Object">
+		select <include refid="Base_Column_List"/>from st_mall.users where username = #{username} 
+	</select>
+	<update id="updateAddress"  parameterType="Object">
+		update st_mall.users set youbian= #{youbian}, name= #{name}, 
+		lianxi= #{lianxi}, shenfen= #{shenfen}, address=#{address} where username= #{username}
+	</update>
+	
+</mapper> 

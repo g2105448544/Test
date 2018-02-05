@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.system.mapper.SysUserMapper">
+	<!--注册 -->
+	<resultMap id="BaseResultMap" type="st.system.model.UserModel">
+		<result column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="userpass" property="userpass"/>
+		<result column="name" property="name"/>
+		<result column="youbian" property="youbian"/>
+		<result column="shenfen" property="shenfen"/>
+		<result column="address" property="address"/>
+		<result column="lianxi" property="lianxi"/>
+	</resultMap>
+	<!-- sys_user table all fields -->
+	<sql id="Base_Column_List">
+		 id,username, userpass, name, maimai, youbian, shenfen, address, lianxi
+	</sql>
+	<!--注册 -->
+	<insert id="insert" parameterType="Object">
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into st_mall.user(username, userpass,name) values(#{username}, #{userpass}, #{name});
+	</insert>
+	<!-- 登陆 -->
+	<select id = "selectCount" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1) FROM st_mall.user WHERE username = #{username} AND userpass = #{userpass}
+	</select>
+	<select id = "select" resultMap="BaseResultMap" parameterType="Object">
+		select <include refid="Base_Column_List"/> from st_mall.user where username = #{username} and userpass = #{userpass}
+	</select>
+	
+
+
+</mapper>   

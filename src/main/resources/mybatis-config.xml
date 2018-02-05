@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+
+	</typeAliases>
+
+	<mappers>
+
+		<mapper resource="st/system/mybatis/SysFenleiMapper.xml" /> 
+		<mapper resource="st/system/mybatis/SysAddressMapper.xml" /> 
+		<mapper resource="st/system/mybatis/SysUsersMapper.xml" /> 
+		<mapper resource="st/system/mybatis/SysUserMapper.xml" /> 
+		<mapper resource="st/system/mybatis/SysShangpinMapper.xml" /> 
+		<mapper resource="st/system/mybatis/SysGouwucheMapper.xml" /> 
+		<mapper resource="st/system/mybatis/SysDingdanMapper.xml" /> 
+		<mapper resource="st/system/mybatis/SysMaijiaMapper.xml" /> 
+		
+
+	</mappers>
+
+</configuration>

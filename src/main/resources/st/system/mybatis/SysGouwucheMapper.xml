@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.system.mapper.SysGouwucheMapper">
+<resultMap id="BaseResultMap" type="st.system.model.GouwucheModel">
+		<result column="id"	property="id"/>	
+		<result column="userid" property="userid"/>
+		<result column="sp_xinxi_id" property="sp_xinxi_id"/>
+		<result column="quantity" property="quantity"/>
+		<result column="name" property="name"/>	
+		<result column="price" property="price"/>
+		<result column="url" property="url"/>
+		<result column="telephone" property="telephone"/>
+		<result column="xxaddress" property="xxaddress"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		 id, userid, sp_xinxi_id, quantity,price,url,name,telephone,xxaddress
+	</sql>
+	<!-- 添加购物车 -->
+	<insert id="insertGouwuche" parameterType="Object">
+		insert into st_mall.gouwuche(id, userid, sp_xinxi_id, quantity) 
+		values(#{id}, #{userid}, #{sp_xinxi_id}, #{quantity})
+	</insert>
+	<!-- 根据用户查看购物车 -->
+	<select id="selectGouwuche" resultMap="BaseResultMap" parameterType="Object">
+		SELECT * FROM st_mall.gouwuche g
+		left join st_mall.sp_xinxi x
+		on x.id = g.sp_xinxi_id where userid=#{userid};
+	</select>
+	<!-- 根据id删除购物车 -->
+	<delete id="deleteGouwuche" parameterType="Object">
+		delete from st_mall.gouwuche where id=#{id}
+	</delete>
+	
+	<select id="select" resultMap="BaseResultMap" parameterType="Object">
+		select * from st_mall.gouwuche g
+		left join st_mall.sp_xinxi x
+		on x.id = g.sp_xinxi_id;
+	</select>
+	<select id="selectgouwuche" resultMap="BaseResultMap" parameterType="Object" >
+		select * from st_mall.gouwuche g
+		left join st_mall.sp_xinxi x
+		on x.id = g.sp_xinxi_id 
+		where g.id=#{id} ;
+	</select>
+	<select id="chadizhi" resultMap="BaseResultMap" parameterType="Object">
+		SELECT * FROM st_mall.gouwuche g
+		left join st_mall.sh_dizhi x
+		on g.userid = x.username where userid =#{userid};
+	</select>
+	<update id="updategouwuche" parameterType="Object">
+		update st_mall.gouwuche set quantity=#{quantity} where id=#{id};
+	</update>
+	<!-- 查询商品id -->
+	<select id="selectByid" resultType="java.lang.Integer" parameterType="Object">
+		select count(1) from st_mall.gouwuche where sp_xinxi_id=#{sp_xinxi_id}
+	</select>
+	<!-- 修改商品数量 -->
+	<update id="updateQuantity" parameterType="Object">
+		update st_mall.gouwuche set quantity=#{quantity} 
+		where id=#{id}
+	</update>
+	<select id="selectsp" resultMap="BaseResultMap" parameterType="Object">
+		select * from st_mall.gouwuche where sp_xinxi_id=#{sp_xinxi_id};
+	</select>
+
+</mapper>

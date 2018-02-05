@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.system.mapper.SysFenleiMapper">
+<resultMap id="BaseResultMap" type="st.system.model.FenleiModel">
+		<result column="id"	property="id"/>	
+		<result column="name" property="name"/>
+		<result column="code" property="code"/>
+		<result column="descr"	property="descr"/>	
+		<result column="supercode"	property="supercode"/>	
+	</resultMap>
+	<sql id="Base_Column_List">
+		 id, name, code, descr, supercode
+	</sql>
+	<select id="selectFenlei" resultMap="BaseResultMap" parameterType="Object">
+		select<include refid="Base_Column_List"/>from st_mall.sp_fenlei;	
+	</select>
+</mapper>
